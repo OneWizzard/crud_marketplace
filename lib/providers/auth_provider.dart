@@ -1,22 +1,26 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../models/auth_model.dart';
 import '../services/auth_services.dart';
 
+part 'auth_provider.g.dart';
 
-final authServiceProvider = Provider<AuthServices>((ref) => AuthServices());
+@riverpod
+AuthServices authService(AuthServiceRef ref) {
+  return AuthServices();
+}
 
-final authStateProvider = StateNotifierProvider<AuthNotifier, AuthModel?>((ref) {
-  return AuthNotifier(ref.read(authServiceProvider));
-});
-
-class AuthNotifier extends StateNotifier<AuthModel?> {
-  final AuthServices _authService;
-
-  AuthNotifier(this._authService) : super(null);
+@riverpod
+class AuthState extends _$AuthState {
+  @override
+  AuthModel? build() {
+    return null;
+  }
 
   Future<void> login(String username, String password) async {
-    final user = await _authService.login(username, password);
-    state = user; // simpan data user
+    final service = ref.read(authServiceProvider);
+    final user = await service.login(username, password);
+    state = user;
   }
 
   void logout() {
