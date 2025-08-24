@@ -10,19 +10,21 @@ AuthServices authService(AuthServiceRef ref) {
   return AuthServices();
 }
 
-@riverpod
+/// Provider untuk state autentikasi (user yang sedang login)
+@Riverpod(keepAlive: true)
 class AuthState extends _$AuthState {
   @override
-  AuthModel? build() {
-    return null;
-  }
+  AuthModel? build() => null;
 
+  /// Login user
   Future<void> login(String username, String password) async {
     final service = ref.read(authServiceProvider);
     final user = await service.login(username, password);
-    state = user;
+    print('User setelah login: $user');
+    state = user; // set user ke state global
   }
 
+  /// Logout user
   void logout() {
     state = null;
   }

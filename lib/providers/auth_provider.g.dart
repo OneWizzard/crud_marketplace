@@ -23,21 +23,22 @@ final authServiceProvider = AutoDisposeProvider<AuthServices>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef AuthServiceRef = AutoDisposeProviderRef<AuthServices>;
-String _$authStateHash() => r'8b11d82cb5d1163292f4fb3f2633ef7396176f47';
+String _$authStateHash() => r'3064dae794b1af1df1279aafd6f2cf479eaa96e6';
 
-/// See also [AuthState].
+/// Provider untuk state autentikasi (user yang sedang login)
+///
+/// Copied from [AuthState].
 @ProviderFor(AuthState)
-final authStateProvider =
-    AutoDisposeNotifierProvider<AuthState, AuthModel?>.internal(
-      AuthState.new,
-      name: r'authStateProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$authStateHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final authStateProvider = NotifierProvider<AuthState, AuthModel?>.internal(
+  AuthState.new,
+  name: r'authStateProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$authStateHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
-typedef _$AuthState = AutoDisposeNotifier<AuthModel?>;
+typedef _$AuthState = Notifier<AuthModel?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
