@@ -19,7 +19,7 @@ class AuthState extends _$AuthState {
   Future<void> login(String username, String password) async {
     final service = ref.read(authServiceProvider);
     final user = await service.login(username, password);
-    print('User setelah login: $user');
+    // print('User setelah login: $user');
     state = user; // set user ke state global
   }
 
