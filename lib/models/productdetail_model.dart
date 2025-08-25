@@ -1,147 +1,73 @@
-class ProductDetail {
-  final int id;
-  final String title;
-  final String description;
-  final String category;
-  final double price;
-  final double discountPercentage;
-  final double rating;
-  final int stock;
-  final List<String> tags;
-  final String brand;
-  final String sku;
-  final double weight;
-  final Dimensions dimensions;
-  final String warrantyInformation;
-  final String shippingInformation;
-  final String availabilityStatus;
-  final List<Review> reviews;
-  final String returnPolicy;
-  final int minimumOrderQuantity;
-  final Meta meta;
-  final String thumbnail;
-  final List<String> images;
+// productdetail_model.dart
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ProductDetail({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.category,
-    required this.price,
-    required this.discountPercentage,
-    required this.rating,
-    required this.stock,
-    required this.tags,
-    required this.brand,
-    required this.sku,
-    required this.weight,
-    required this.dimensions,
-    required this.warrantyInformation,
-    required this.shippingInformation,
-    required this.availabilityStatus,
-    required this.reviews,
-    required this.returnPolicy,
-    required this.minimumOrderQuantity,
-    required this.meta,
-    required this.thumbnail,
-    required this.images,
-  });
+part 'productdetail_model.freezed.dart';
+part 'productdetail_model.g.dart';
 
-  factory ProductDetail.fromJson(Map<String, dynamic> json) {
-    return ProductDetail(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      category: json['category'],
-      price: (json['price'] as num).toDouble(),
-      discountPercentage: (json['discountPercentage'] as num).toDouble(),
-      rating: (json['rating'] as num).toDouble(),
-      stock: json['stock'],
-      tags: List<String>.from(json['tags'] ?? []),
-      brand: json['brand'] ?? '',
-      sku: json['sku'] ?? '',
-      weight: (json['weight'] as num).toDouble(),
-      dimensions: Dimensions.fromJson(json['dimensions']),
-      warrantyInformation: json['warrantyInformation'] ?? '',
-      shippingInformation: json['shippingInformation'] ?? '',
-      availabilityStatus: json['availabilityStatus'] ?? '',
-      reviews: (json['reviews'] as List)
-          .map((e) => Review.fromJson(e))
-          .toList(),
-      returnPolicy: json['returnPolicy'] ?? '',
-      minimumOrderQuantity: json['minimumOrderQuantity'],
-      meta: Meta.fromJson(json['meta']),
-      thumbnail: json['thumbnail'] ?? '',
-      images: List<String>.from(json['images'] ?? []),
-    );
-  }
+@freezed
+abstract class Dimensions with _$Dimensions {
+  const factory Dimensions({
+    required double width,
+    required double height,
+    required double depth,
+  }) = _Dimensions;
+
+  factory Dimensions.fromJson(Map<String, dynamic> json) =>
+      _$DimensionsFromJson(json);
 }
 
-class Dimensions {
-  final double width;
-  final double height;
-  final double depth;
+@freezed
+abstract class Review with _$Review {
+  const factory Review({
+    required int rating,
+    required String comment,
+    required String date,
+    required String reviewerName,
+    required String reviewerEmail,
+  }) = _Review;
 
-  Dimensions({
-    required this.width,
-    required this.height,
-    required this.depth,
-  });
-
-  factory Dimensions.fromJson(Map<String, dynamic> json) {
-    return Dimensions(
-      width: (json['width'] as num).toDouble(),
-      height: (json['height'] as num).toDouble(),
-      depth: (json['depth'] as num).toDouble(),
-    );
-  }
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 }
 
-class Review {
-  final int rating;
-  final String comment;
-  final DateTime date;
-  final String reviewerName;
-  final String reviewerEmail;
+@freezed
+abstract class Meta with _$Meta {
+  const factory Meta({
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    required String barcode,
+    required String qrCode,
+  }) = _Meta;
 
-  Review({
-    required this.rating,
-    required this.comment,
-    required this.date,
-    required this.reviewerName,
-    required this.reviewerEmail,
-  });
-
-  factory Review.fromJson(Map<String, dynamic> json) {
-    return Review(
-      rating: json['rating'],
-      comment: json['comment'],
-      date: DateTime.parse(json['date']),
-      reviewerName: json['reviewerName'],
-      reviewerEmail: json['reviewerEmail'],
-    );
-  }
+  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
 }
 
-class Meta {
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final String barcode;
-  final String qrCode;
-
-  Meta({
-    required this.createdAt,
-    required this.updatedAt,
-    required this.barcode,
-    required this.qrCode,
-  });
-
-  factory Meta.fromJson(Map<String, dynamic> json) {
-    return Meta(
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      barcode: json['barcode'],
-      qrCode: json['qrCode'],
-    );
-  }
+@freezed
+abstract class ProductDetail with _$ProductDetail {
+  const factory ProductDetail({
+    required int id,
+    required String title,
+    required String description,
+    required String category,
+    required double price,
+    required double discountPercentage,
+    required double rating,
+    required int stock,
+    required List<String> tags,
+    required String brand,
+    required String sku,
+    required double weight,
+    required Dimensions dimensions,
+    required String warrantyInformation,
+    required String shippingInformation,
+    required String availabilityStatus,
+    required List<Review> reviews,
+    required String returnPolicy,
+    required int minimumOrderQuantity,
+    required Meta meta,
+    required String thumbnail,
+    required List<String> images,
+  }) = _ProductDetail;
+  
+  factory ProductDetail.fromJson(Map<String, dynamic> json) =>
+      _$ProductDetailFromJson(json);
 }

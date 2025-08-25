@@ -1,16 +1,14 @@
-class AddProduct {
-  final int id;
-  final String title;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  AddProduct({
-    required this.id,
-    required this.title,
-  });
+part 'addproduct_model.freezed.dart';
+part 'addproduct_model.g.dart';
 
-  factory AddProduct.fromJson(Map<String, dynamic> json) {
-    return AddProduct(
-      id: json['id'],
-      title: json['title'],
-    );
-  }
+@freezed
+abstract class AddProduct with _$AddProduct {
+  const factory AddProduct({
+    required int id,
+    required String title,
+  }) = _AddProduct;
+
+  factory AddProduct.fromJson(Map<String, dynamic> json) => _$AddProductFromJson(json);
 }
