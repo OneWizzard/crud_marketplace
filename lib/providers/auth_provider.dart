@@ -5,7 +5,7 @@ import '../services/auth_services.dart';
 part 'auth_provider.g.dart';
 
 @riverpod
-AuthServices authService(AuthServiceRef ref) {
+AuthServices authService(Ref ref) {
   return AuthServices();
 }
 

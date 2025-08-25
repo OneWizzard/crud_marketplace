@@ -6,538 +6,383 @@ part of 'product_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$productServiceHash() => r'199388505ab819bf6ee758b13a384288d334dafb';
-
-/// See also [productService].
 @ProviderFor(productService)
-final productServiceProvider = AutoDisposeProvider<ProductService>.internal(
-  productService,
-  name: r'productServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$productServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const productServiceProvider = ProductServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ProductServiceRef = AutoDisposeProviderRef<ProductService>;
-String _$productListHash() => r'7fbfe0e3c5ade3a376589017685746f25e24ab56';
+final class ProductServiceProvider
+    extends $FunctionalProvider<ProductService, ProductService, ProductService>
+    with $Provider<ProductService> {
+  const ProductServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'productServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [productList].
+  @override
+  String debugGetCreateSourceHash() => _$productServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProductService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ProductService create(Ref ref) {
+    return productService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProductService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProductService>(value),
+    );
+  }
+}
+
+String _$productServiceHash() => r'0473fdd2a61f1b9401fe8cd8815ed49e7139952a';
+
 @ProviderFor(productList)
-final productListProvider = AutoDisposeFutureProvider<List<Product>>.internal(
-  productList,
-  name: r'productListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$productListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const productListProvider = ProductListProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ProductListRef = AutoDisposeFutureProviderRef<List<Product>>;
-String _$productDetailHash() => r'e66e3ed07a8aca31f902617362e1ff111282fab2';
+final class ProductListProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Product>>,
+          List<Product>,
+          FutureOr<List<Product>>
+        >
+    with $FutureModifier<List<Product>>, $FutureProvider<List<Product>> {
+  const ProductListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'productListProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+  @override
+  String debugGetCreateSourceHash() => _$productListHash();
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
+  @$internal
+  @override
+  $FutureProviderElement<List<Product>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  @override
+  FutureOr<List<Product>> create(Ref ref) {
+    return productList(ref);
   }
 }
 
-/// See also [productDetail].
+String _$productListHash() => r'ed73192761334031765e1308595070caf6adb1be';
+
 @ProviderFor(productDetail)
-const productDetailProvider = ProductDetailFamily();
+const productDetailProvider = ProductDetailFamily._();
 
-/// See also [productDetail].
-class ProductDetailFamily extends Family<AsyncValue<ProductDetail>> {
-  /// See also [productDetail].
-  const ProductDetailFamily();
+final class ProductDetailProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<ProductDetail>,
+          ProductDetail,
+          FutureOr<ProductDetail>
+        >
+    with $FutureModifier<ProductDetail>, $FutureProvider<ProductDetail> {
+  const ProductDetailProvider._({
+    required ProductDetailFamily super.from,
+    required int super.argument,
+  }) : super(
+         retry: null,
+         name: r'productDetailProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [productDetail].
-  ProductDetailProvider call(int id) {
-    return ProductDetailProvider(id);
+  @override
+  String debugGetCreateSourceHash() => _$productDetailHash();
+
+  @override
+  String toString() {
+    return r'productDetailProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<ProductDetail> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<ProductDetail> create(Ref ref) {
+    final argument = this.argument as int;
+    return productDetail(ref, argument);
   }
 
   @override
-  ProductDetailProvider getProviderOverride(
-    covariant ProductDetailProvider provider,
-  ) {
-    return call(provider.id);
+  bool operator ==(Object other) {
+    return other is ProductDetailProvider && other.argument == argument;
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'productDetailProvider';
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-/// See also [productDetail].
-class ProductDetailProvider extends AutoDisposeFutureProvider<ProductDetail> {
-  /// See also [productDetail].
-  ProductDetailProvider(int id)
-    : this._internal(
-        (ref) => productDetail(ref as ProductDetailRef, id),
-        from: productDetailProvider,
+String _$productDetailHash() => r'385205db1bd6b827c29ded621bc98f4d18a5aac4';
+
+final class ProductDetailFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<ProductDetail>, int> {
+  const ProductDetailFamily._()
+    : super(
+        retry: null,
         name: r'productDetailProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$productDetailHash,
-        dependencies: ProductDetailFamily._dependencies,
-        allTransitiveDependencies:
-            ProductDetailFamily._allTransitiveDependencies,
-        id: id,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
       );
 
-  ProductDetailProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
+  ProductDetailProvider call(int id) =>
+      ProductDetailProvider._(argument: id, from: this);
 
   @override
-  Override overrideWith(
-    FutureOr<ProductDetail> Function(ProductDetailRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: ProductDetailProvider._internal(
-        (ref) => create(ref as ProductDetailRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<ProductDetail> createElement() {
-    return _ProductDetailProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is ProductDetailProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'productDetailProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin ProductDetailRef on AutoDisposeFutureProviderRef<ProductDetail> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
-
-class _ProductDetailProviderElement
-    extends AutoDisposeFutureProviderElement<ProductDetail>
-    with ProductDetailRef {
-  _ProductDetailProviderElement(super.provider);
-
-  @override
-  int get id => (origin as ProductDetailProvider).id;
-}
-
-String _$addProductHash() => r'e7b5d8fa8bfb9cd01d0d95ebc738dc890eb92f16';
-
-/// See also [addProduct].
 @ProviderFor(addProduct)
-const addProductProvider = AddProductFamily();
+const addProductProvider = AddProductFamily._();
 
-/// See also [addProduct].
-class AddProductFamily extends Family<AsyncValue<AddProduct>> {
-  /// See also [addProduct].
-  const AddProductFamily();
+final class AddProductProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AddProduct>,
+          AddProduct,
+          FutureOr<AddProduct>
+        >
+    with $FutureModifier<AddProduct>, $FutureProvider<AddProduct> {
+  const AddProductProvider._({
+    required AddProductFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'addProductProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [addProduct].
-  AddProductProvider call(String title) {
-    return AddProductProvider(title);
+  @override
+  String debugGetCreateSourceHash() => _$addProductHash();
+
+  @override
+  String toString() {
+    return r'addProductProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<AddProduct> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AddProduct> create(Ref ref) {
+    final argument = this.argument as String;
+    return addProduct(ref, argument);
   }
 
   @override
-  AddProductProvider getProviderOverride(
-    covariant AddProductProvider provider,
-  ) {
-    return call(provider.title);
+  bool operator ==(Object other) {
+    return other is AddProductProvider && other.argument == argument;
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'addProductProvider';
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-/// See also [addProduct].
-class AddProductProvider extends AutoDisposeFutureProvider<AddProduct> {
-  /// See also [addProduct].
-  AddProductProvider(String title)
-    : this._internal(
-        (ref) => addProduct(ref as AddProductRef, title),
-        from: addProductProvider,
+String _$addProductHash() => r'2928ec06da794e63e09c4a70f3ff243ba67b06d4';
+
+final class AddProductFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<AddProduct>, String> {
+  const AddProductFamily._()
+    : super(
+        retry: null,
         name: r'addProductProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$addProductHash,
-        dependencies: AddProductFamily._dependencies,
-        allTransitiveDependencies: AddProductFamily._allTransitiveDependencies,
-        title: title,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
       );
 
-  AddProductProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.title,
-  }) : super.internal();
-
-  final String title;
+  AddProductProvider call(String title) =>
+      AddProductProvider._(argument: title, from: this);
 
   @override
-  Override overrideWith(
-    FutureOr<AddProduct> Function(AddProductRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: AddProductProvider._internal(
-        (ref) => create(ref as AddProductRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        title: title,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<AddProduct> createElement() {
-    return _AddProductProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is AddProductProvider && other.title == title;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, title.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'addProductProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin AddProductRef on AutoDisposeFutureProviderRef<AddProduct> {
-  /// The parameter `title` of this provider.
-  String get title;
-}
-
-class _AddProductProviderElement
-    extends AutoDisposeFutureProviderElement<AddProduct>
-    with AddProductRef {
-  _AddProductProviderElement(super.provider);
-
-  @override
-  String get title => (origin as AddProductProvider).title;
-}
-
-String _$updateProductHash() => r'6b39461c6bf6eff20caea0aadd812c73f3225644';
-
-/// See also [updateProduct].
 @ProviderFor(updateProduct)
-const updateProductProvider = UpdateProductFamily();
+const updateProductProvider = UpdateProductFamily._();
 
-/// See also [updateProduct].
-class UpdateProductFamily extends Family<AsyncValue<UpdateProduct>> {
-  /// See also [updateProduct].
-  const UpdateProductFamily();
+final class UpdateProductProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<UpdateProduct>,
+          UpdateProduct,
+          FutureOr<UpdateProduct>
+        >
+    with $FutureModifier<UpdateProduct>, $FutureProvider<UpdateProduct> {
+  const UpdateProductProvider._({
+    required UpdateProductFamily super.from,
+    required UpdateParams super.argument,
+  }) : super(
+         retry: null,
+         name: r'updateProductProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [updateProduct].
-  UpdateProductProvider call(UpdateParams params) {
-    return UpdateProductProvider(params);
+  @override
+  String debugGetCreateSourceHash() => _$updateProductHash();
+
+  @override
+  String toString() {
+    return r'updateProductProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<UpdateProduct> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<UpdateProduct> create(Ref ref) {
+    final argument = this.argument as UpdateParams;
+    return updateProduct(ref, argument);
   }
 
   @override
-  UpdateProductProvider getProviderOverride(
-    covariant UpdateProductProvider provider,
-  ) {
-    return call(provider.params);
+  bool operator ==(Object other) {
+    return other is UpdateProductProvider && other.argument == argument;
   }
 
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'updateProductProvider';
+  int get hashCode {
+    return argument.hashCode;
+  }
 }
 
-/// See also [updateProduct].
-class UpdateProductProvider extends AutoDisposeFutureProvider<UpdateProduct> {
-  /// See also [updateProduct].
-  UpdateProductProvider(UpdateParams params)
-    : this._internal(
-        (ref) => updateProduct(ref as UpdateProductRef, params),
-        from: updateProductProvider,
+String _$updateProductHash() => r'8e78fb2afe588703f56c4ae2b2ffe3e2c5d7da4c';
+
+final class UpdateProductFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<UpdateProduct>, UpdateParams> {
+  const UpdateProductFamily._()
+    : super(
+        retry: null,
         name: r'updateProductProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$updateProductHash,
-        dependencies: UpdateProductFamily._dependencies,
-        allTransitiveDependencies:
-            UpdateProductFamily._allTransitiveDependencies,
-        params: params,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
       );
 
-  UpdateProductProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.params,
-  }) : super.internal();
-
-  final UpdateParams params;
+  UpdateProductProvider call(UpdateParams params) =>
+      UpdateProductProvider._(argument: params, from: this);
 
   @override
-  Override overrideWith(
-    FutureOr<UpdateProduct> Function(UpdateProductRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: UpdateProductProvider._internal(
-        (ref) => create(ref as UpdateProductRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        params: params,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<UpdateProduct> createElement() {
-    return _UpdateProductProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is UpdateProductProvider && other.params == params;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, params.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'updateProductProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin UpdateProductRef on AutoDisposeFutureProviderRef<UpdateProduct> {
-  /// The parameter `params` of this provider.
-  UpdateParams get params;
-}
-
-class _UpdateProductProviderElement
-    extends AutoDisposeFutureProviderElement<UpdateProduct>
-    with UpdateProductRef {
-  _UpdateProductProviderElement(super.provider);
-
-  @override
-  UpdateParams get params => (origin as UpdateProductProvider).params;
-}
-
-String _$deleteProductHash() => r'b3cc4259bf6c3187618dad3c61b7cce76ab1cd04';
-
-/// See also [deleteProduct].
 @ProviderFor(deleteProduct)
-const deleteProductProvider = DeleteProductFamily();
+const deleteProductProvider = DeleteProductFamily._();
 
-/// See also [deleteProduct].
-class DeleteProductFamily extends Family<AsyncValue<DeleteProduct>> {
-  /// See also [deleteProduct].
-  const DeleteProductFamily();
+final class DeleteProductProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<DeleteProduct>,
+          DeleteProduct,
+          FutureOr<DeleteProduct>
+        >
+    with $FutureModifier<DeleteProduct>, $FutureProvider<DeleteProduct> {
+  const DeleteProductProvider._({
+    required DeleteProductFamily super.from,
+    required int super.argument,
+  }) : super(
+         retry: null,
+         name: r'deleteProductProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
-  /// See also [deleteProduct].
-  DeleteProductProvider call(int id) {
-    return DeleteProductProvider(id);
+  @override
+  String debugGetCreateSourceHash() => _$deleteProductHash();
+
+  @override
+  String toString() {
+    return r'deleteProductProvider'
+        ''
+        '($argument)';
   }
 
+  @$internal
   @override
-  DeleteProductProvider getProviderOverride(
-    covariant DeleteProductProvider provider,
-  ) {
-    return call(provider.id);
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
+  $FutureProviderElement<DeleteProduct> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'deleteProductProvider';
-}
-
-/// See also [deleteProduct].
-class DeleteProductProvider extends AutoDisposeFutureProvider<DeleteProduct> {
-  /// See also [deleteProduct].
-  DeleteProductProvider(int id)
-    : this._internal(
-        (ref) => deleteProduct(ref as DeleteProductRef, id),
-        from: deleteProductProvider,
-        name: r'deleteProductProvider',
-        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-            ? null
-            : _$deleteProductHash,
-        dependencies: DeleteProductFamily._dependencies,
-        allTransitiveDependencies:
-            DeleteProductFamily._allTransitiveDependencies,
-        id: id,
-      );
-
-  DeleteProductProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
-
-  @override
-  Override overrideWith(
-    FutureOr<DeleteProduct> Function(DeleteProductRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: DeleteProductProvider._internal(
-        (ref) => create(ref as DeleteProductRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<DeleteProduct> createElement() {
-    return _DeleteProductProviderElement(this);
+  FutureOr<DeleteProduct> create(Ref ref) {
+    final argument = this.argument as int;
+    return deleteProduct(ref, argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is DeleteProductProvider && other.id == id;
+    return other is DeleteProductProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin DeleteProductRef on AutoDisposeFutureProviderRef<DeleteProduct> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
+String _$deleteProductHash() => r'27ee747d76001e20b5cab5a39b7867dd1f7f74d8';
 
-class _DeleteProductProviderElement
-    extends AutoDisposeFutureProviderElement<DeleteProduct>
-    with DeleteProductRef {
-  _DeleteProductProviderElement(super.provider);
+final class DeleteProductFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<DeleteProduct>, int> {
+  const DeleteProductFamily._()
+    : super(
+        retry: null,
+        name: r'deleteProductProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  DeleteProductProvider call(int id) =>
+      DeleteProductProvider._(argument: id, from: this);
 
   @override
-  int get id => (origin as DeleteProductProvider).id;
+  String toString() => r'deleteProductProvider';
 }
 
 // ignore_for_file: type=lint

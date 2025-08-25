@@ -1,31 +1,20 @@
-class AuthModel {
-  final int id;
-  final String username;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String accessToken;
-  final String refreshToken;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  AuthModel({
-    required this.id,
-    required this.username,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.accessToken,
-    required this.refreshToken,
-  });
+part 'auth_model.freezed.dart';
+part 'auth_model.g.dart';
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
-      id: json['id'],
-      username: json['username'],
-      email: json['email'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      accessToken: json['accessToken'],
-      refreshToken: json['refreshToken'],
-    );
-  }
+@freezed
+abstract class AuthModel with _$AuthModel {
+  const factory AuthModel({
+    required int id,
+    required String username,
+    required String email,
+    required String firstName,
+    required String lastName,
+    required String accessToken,
+    required String refreshToken,
+  }) = _AuthModel;
+
+  factory AuthModel.fromJson(Map<String, dynamic> json) =>
+      _$AuthModelFromJson(json);
 }
